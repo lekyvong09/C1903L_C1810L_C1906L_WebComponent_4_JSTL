@@ -3,4 +3,35 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+    <display-name>JSTL</display-name>
+
+    <context-param>
+        <param-name>dbURL</param-name>
+        <param-value>jdbc:mysql://localhost/world</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbuserid</param-name>
+        <param-value>root</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbuserpwd</param-name>
+        <param-value>ab123456..</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbinitcat</param-name>
+        <param-value>world</param-value>
+    </context-param>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/errorHandler.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/errorHandler.jsp</location>
+    </error-page>
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>
