@@ -1,2 +1,2 @@
-Copyright &copy;2021
-<a href="https://www.school.com">School</a>
+Copyright &copy;${param.copyrightYear}
+<a href="${param.webLink}">School</a>
