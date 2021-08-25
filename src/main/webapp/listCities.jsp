@@ -37,6 +37,7 @@
             <td style="width:75%;height:80%;">
                 <table border="1">
                     <tr>
+                        <td>Seq</td>
                         <td>Name</td>
                         <td>CountryCode</td>
                         <td>Country</td>
@@ -44,6 +45,7 @@
                     </tr>
                     <c:forEach var="tempCity" items="${sessionScope.cityData}" varStatus="iterationCount">
                         <tr>
+                            <td>${iterationCount.count}</td>
                             <td>${tempCity.name}</td>
                             <td>${tempCity.countryCode}</td>
                             <td>${tempCity.country}</td>
