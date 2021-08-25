@@ -6,6 +6,35 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
+    <c:import url="header.jsp" />
+
+    <table style="width: 100%">
+        <tr>
+            <td style="width:25%;height:80%;" valign="top">
+                <c:import url="navbar.jsp" />
+            </td>
+            <td style="width:75%;height:80%;">
+                <h1>Welcome to the World Manager</h1>
+                <%
+                    if (session.getAttribute("authorized_user") != null)
+                    {
+                %>
+                        <h2>Welcome back ${sessionScope.authorized_user.uid}</h2>
+                <%
+                    }
+                    else
+                    {
+                %>
+                        <h2>Return user login</h2>
+                        <a href="login.jsp">here</a>
+                <%
+                        // return to login.jsp
+                    }
+                %>
+
+            </td>
+        </tr>
+    </table>
 
     <c:import url="footer.jsp" >
         <c:param name="copyrightYear" value="${initParam.copyright}" />
