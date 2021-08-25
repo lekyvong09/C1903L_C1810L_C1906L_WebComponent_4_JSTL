@@ -13,8 +13,30 @@
         <c:import url="navbar.jsp" />
       </td>
       <td style="width:75%;height:80%;">
-        <h1>Coming soon</h1>
+        <form id="login" method="post" action="loginUser.do">
+          <table style="width: 450px;" >
+            <tr>
+              <td><span>Username:</span></td>
+              <td><input name="uid" type="text" style="width: 250px;" value="${cookie.credentials_uid.value}"/></td>
+            </tr>
+            <tr>
+              <td><span>Password:</span></td>
+              <td><input name="pwd" type="password" style="width: 250px;" value="${cookie.credentials_pwd.value}"/></td>
+            </tr>
+            <tr>
+              <td colspan="2" align="right">
+                <input name="rememberMe" type="checkbox"> RememberMe
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" align="right">
+                <input type="submit" value="Sign in" style="width: 250px;"/>
+              </td>
+            </tr>
+          </table>
 
+          <input type="hidden" name="dest" value="${param.dest}"/>
+        </form>
       </td>
     </tr>
   </table>
