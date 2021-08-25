@@ -15,9 +15,7 @@
           <element id="module-output" name="Java_JSTL" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: javax.servlet.jsp.jstl:jstl-api:1.2" />
-          <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.5" />
-          <element id="library" level="project" name="Maven: javax.servlet.jsp:jsp-api:2.1" />
+          <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
           <element id="library" level="project" name="Maven: junit:junit:4.13.2" />
           <element id="library" level="project" name="Maven: com.microsoft.sqlserver:mssql-jdbc:9.4.0.jre8" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.26" />
