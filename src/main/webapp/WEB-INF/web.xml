@@ -30,14 +30,14 @@
         <param-value>https://www.school.com</param-value>
     </context-param>
 
-    <error-page>
-        <error-code>404</error-code>
-        <location>/errorHandler.jsp</location>
-    </error-page>
-    <error-page>
-        <error-code>500</error-code>
-        <location>/errorHandler.jsp</location>
-    </error-page>
+<!--    <error-page>-->
+<!--        <error-code>404</error-code>-->
+<!--        <location>/errorHandler.jsp</location>-->
+<!--    </error-page>-->
+<!--    <error-page>-->
+<!--        <error-code>500</error-code>-->
+<!--        <location>/errorHandler.jsp</location>-->
+<!--    </error-page>-->
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
