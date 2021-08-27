@@ -15,7 +15,7 @@
             <td style="width:75%;height:80%;">
                 <h1>An Error has occurred!</h1>
                 ${pageContext.exception.message}
-
+                ${param.ex}
             </td>
         </tr>
     </table>

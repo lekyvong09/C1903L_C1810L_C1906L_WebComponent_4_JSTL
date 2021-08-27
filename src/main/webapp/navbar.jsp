@@ -11,4 +11,6 @@
     <c:param name="pwd" value="1234567890" />
 </c:url>
 <a href="${urlWithParams}"> URL with params</a><br>
+<a href="errorHandlingInTags.jsp">Error Tags</a><br>
+<a href="errorHandlingInTags2.jsp">Error Tags 2</a><br>
 
