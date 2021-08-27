@@ -13,4 +13,6 @@
 <a href="${urlWithParams}"> URL with params</a><br>
 <a href="errorHandlingInTags.jsp">Error Tags</a><br>
 <a href="errorHandlingInTags2.jsp">Error Tags 2</a><br>
+<a href="formatting.jsp">Formatting</a><br>
+
 
