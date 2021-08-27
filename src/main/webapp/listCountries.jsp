@@ -47,6 +47,18 @@
                         </tr>
                     </c:forEach>
                 </table>
+
+                <c:forEach var="temp" items="${sessionScope.countryData}">
+                    <c:if test="${temp.code == 'MEX'}">
+                        <c:set var="updateCountry" value="${temp}" />
+
+                        <c:set target="${updateCountry}" property="name" value="Mễ Tây Cơ" />
+                        <h3>New value of MEX is ${updateCountry.name}</h3>
+
+                        <c:remove var="updateCountry" />
+                    </c:if>
+                </c:forEach>
+
             </td>
         </tr>
     </table>
