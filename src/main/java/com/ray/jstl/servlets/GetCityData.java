@@ -45,17 +45,19 @@ public class GetCityData extends HttpServlet {
                     c.setCountryCode(rs.getString("CountryCode"));
                     c.setCountry(rs.getString("Country"));
                     c.setPopulation(rs.getInt("Population"));
-
+                    System.out.println(c);
                     allCities.add(c);
                 }
                 s.setAttribute("cityData", allCities);
+                System.out.println("finish getting cityData");
 
             }
             catch (Exception ex)
             {
                 throw new IOException("Query could not be executed to get all cities");
             }
-            response.sendRedirect("listCities.jsp");
+            response.sendRedirect(getServletContext().getInitParameter("hostURL")
+                    + getServletContext().getContextPath() +"/Protected/listCities.jsp");
         }
         else
         {
