@@ -21,4 +21,15 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
+
+    <function>
+        <name>sqrt</name>
+        <function-class>com.ray.jstl.utilities.ELFunctions</function-class>
+        <function-signature>java.lang.double sqrt(double)</function-signature>
+    </function>
+    <function>
+        <name>square</name>
+        <function-class>com.ray.jstl.utilities.ELFunctions</function-class>
+        <function-signature>java.lang.double square(double)</function-signature>
+    </function>
 </taglib>
