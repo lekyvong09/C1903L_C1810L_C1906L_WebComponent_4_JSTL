@@ -4,6 +4,7 @@
             , com.ray.jstl.models.WebUser
             , java.sql.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="wm" uri="WEB-INF/WorldManagerTag.tld"%>
 <html>
 <head>
     <title>List Cities</title>
@@ -37,21 +38,23 @@
             <td style="width:75%;height:80%;">
                 <table border="1">
                     <tr>
-                        <td>Seq</td>
+<%--                        <td>Seq</td>--%>
                         <td>Name</td>
                         <td>CountryCode</td>
                         <td>Country</td>
                         <td>Population</td>
                     </tr>
-                    <c:forEach var="tempCity" items="${sessionScope.cityData}" varStatus="iterationCount">
+<%--                    <c:forEach var="tempCity" items="${sessionScope.cityData}" varStatus="iterationCount">--%>
+                    <wm:cityiterator cityList="${sessionScope.cityData}">
                         <tr>
-                            <td>${iterationCount.count}</td>
-                            <td>${tempCity.name}</td>
-                            <td>${tempCity.countryCode}</td>
-                            <td>${tempCity.country}</td>
-                            <td>${tempCity.population}</td>
+<%--                            <td>${iterationCount.count}</td>--%>
+                            <td>${city.name}</td>
+                            <td>${city.countryCode}</td>
+                            <td>${city.country}</td>
+                            <td>${city.population}</td>
                         </tr>
-                    </c:forEach>
+                    </wm:cityiterator>
+<%--                    </c:forEach>--%>
                 </table>
             </td>
         </tr>

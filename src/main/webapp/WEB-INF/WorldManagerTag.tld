@@ -10,4 +10,15 @@
         <tag-class>com.ray.jstl.taghandlers.HelloTag</tag-class>
         <body-content>empty</body-content>
     </tag>
+
+    <tag>
+        <name>cityiterator</name>
+        <tag-class>com.ray.jstl.taghandlers.CityIterator</tag-class>
+        <body-content>scriptless</body-content>
+        <attribute>
+            <name>cityList</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
 </taglib>
