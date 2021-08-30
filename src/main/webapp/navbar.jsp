@@ -15,5 +15,7 @@
 <a href="errorHandlingInTags2.jsp">Error Tags 2</a><br>
 <a href="formatting.jsp">Formatting</a><br>
 <a href="function.jsp">Function</a><br>
+<%--<a href="xml.jsp">XML</a><br>--%>
+<a href="sql.jsp">SQL</a><br>
 
 
