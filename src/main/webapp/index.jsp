@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="ex" uri="WEB-INF/WorldManagerTag.tld"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,8 @@
                 <c:import url="navbar.jsp" />
             </td>
             <td style="width:75%;height:80%;">
-                <h1>Welcome to the World Manager</h1>
+<%--                <h1>Welcome to the World Manager</h1>--%>
+                <h1><ex:Hello/> </h1>
                 <%
                     if (session.getAttribute("authorized_user") != null)
                     {
