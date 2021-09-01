@@ -27,4 +27,9 @@ public class DBWorldQueries {
     public static String getCountryCodes() {
         return "select distinct code from country order by Code";
     }
+
+    public static String getWebUserByUsernameAndPassword(String username, String password) {
+        return String.format("select * from webUser where uid='%s' and password='%s'", username, password);
+    }
+
 }
