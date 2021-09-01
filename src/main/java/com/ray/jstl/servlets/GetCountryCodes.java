@@ -52,7 +52,7 @@ public class GetCountryCodes extends HttpServlet {
                 throw new IOException("Query could not be executed to get country codes");
             }
             response.sendRedirect(getServletContext().getInitParameter("hostURL")
-                    + getServletContext().getContextPath() + "addCity.jsp");
+                    + getServletContext().getContextPath() + "/Protected/addCity.jsp");
         }
         else
         {

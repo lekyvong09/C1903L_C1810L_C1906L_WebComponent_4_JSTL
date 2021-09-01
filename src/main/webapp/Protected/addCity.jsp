@@ -6,7 +6,7 @@
 </head>
 <body>
     <body>
-    <c:import url="header.jsp" />
+    <c:import url="../header.jsp" />
     <c:choose>
         <c:when test="${sessionScope.countryCodes == null}" >
             <c:redirect url="${initParam.hostURL}${pageContext.request.contextPath}/getcountrycodes.do" />
@@ -19,7 +19,7 @@
     <table style="width: 100%">
         <tr>
             <td style="width:25%;height:80%;" valign="top">
-                <c:import url="navbar.jsp" />
+                <c:import url="../navbar.jsp" />
             </td>
             <td style="width:75%;height:80%;">
                 <form method="post" action="${initParam.hostURL}${pageContext.request.contextPath}/addnewcity.do">
@@ -29,7 +29,7 @@
                             <td>Name</td>
                             <td><input type="text" name="cityName" style="width: 100%;"></td>
                         </tr>
-                        <td>
+                        <tr>
                             <td>Country_Code</td>
                             <td>
                                 <select name="cityCountryCode" style="width: 100%;" >
@@ -39,7 +39,7 @@
                                     </c:forEach>
                                 </select>
                             </td>
-                        </td>
+                        </tr>
                         <tr>
                             <td>Country</td>
                             <td><input type="text" name="cityCountryName" style="width: 100%;"></td>
@@ -60,7 +60,7 @@
         </tr>
     </table>
 
-    <c:import url="footer.jsp" >
+    <c:import url="../footer.jsp" >
         <c:param name="copyrightYear" value="${initParam.copyright}" />
         <c:param name="webLink" value="${initParam.weblink}" />
     </c:import>

@@ -2,6 +2,7 @@
 <a href="${initParam.hostURL}${pageContext.request.contextPath}/index.jsp">Home</a><br>
 <a href="${initParam.hostURL}${pageContext.request.contextPath}/login.jsp">Login</a><br>
 <a href="${initParam.hostURL}${pageContext.request.contextPath}/Protected/listCities.jsp">List Cities</a><br>
+<a href="${initParam.hostURL}${pageContext.request.contextPath}/Protected/addCity.jsp">Add City</a><br>
 <a href="${initParam.hostURL}${pageContext.request.contextPath}/listCountries.jsp">List Countries</a><br>
 <a href="${initParam.hostURL}${pageContext.request.contextPath}/invalidatesessionandremovecookies.do">Clear All User Data</a><br>
 <a href="${initParam.hostURL}${pageContext.request.contextPath}/signout.do">Sign out</a><br>
