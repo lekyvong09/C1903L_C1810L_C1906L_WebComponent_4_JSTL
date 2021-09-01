@@ -1,6 +1,7 @@
 package com.ray.jstl.servlets;
 
 import com.ray.jstl.dbmodels.DBManager;
+import com.ray.jstl.helpers.DBWorldQueries;
 import com.ray.jstl.models.City;
 
 import javax.servlet.ServletException;
@@ -31,7 +32,7 @@ public class GetCityData extends HttpServlet {
                         throw new IOException("Could not connect to database and open connection");
                 }
 
-                String query = "select * from city order by population DESC";
+                String query = DBWorldQueries.getCity();
 
                 ArrayList<City> allCities = new ArrayList<City>();
 
