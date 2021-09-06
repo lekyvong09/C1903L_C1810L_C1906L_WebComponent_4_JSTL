@@ -98,7 +98,7 @@ public class LoginUser extends HttpServlet {
 
         String target = (request.getParameter("dest")==null || request.getParameter("dest")=="")
                 ? "index.jsp"
-                : request.getParameter("dest") + ".jsp";
+                : request.getParameter("dest");
 
         response.sendRedirect(target);
     }
