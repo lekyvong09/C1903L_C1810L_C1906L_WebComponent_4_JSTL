@@ -9,7 +9,7 @@
     <c:import url="../header.jsp" />
     <c:choose>
         <c:when test="${sessionScope.countryCodes == null}" >
-            <c:redirect url="${initParam.hostURL}${pageContext.request.contextPath}/getcountrycodes.do" />
+            <c:redirect url="${initParam.hostURL}${pageContext.request.contextPath}/countrycontroller.do" />
         </c:when>
         <c:otherwise>
             <h1><c:out value="Welcome back ${sessionScope.authorized_user.uid}" /></h1>
