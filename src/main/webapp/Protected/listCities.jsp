@@ -13,15 +13,6 @@
     <c:import url="../header.jsp" />
 
     <c:choose>
-<%--        <c:when test="${sessionScope.authorized_user == null}">--%>
-<%--            <c:redirect url="../login.jsp?dest=listCities" />--%>
-<%--        </c:when>--%>
-<%--        <c:when test="${sessionScope.authorized_user.authLevel < 1 }">--%>
-<%--            <c:redirect url="../login.jsp?dest=listCities" />--%>
-<%--        </c:when>--%>
-<%--        <c:when test="${sessionScope.authorized_user.uid == null }">--%>
-<%--            <c:redirect url="../login.jsp?dest=listCities" />--%>
-<%--        </c:when>--%>
         <c:when test="${sessionScope.cityData == null}" >
             <c:redirect url="${initParam.hostURL}${pageContext.request.contextPath}/getcitydata.do" />
         </c:when>
