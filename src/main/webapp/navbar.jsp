@@ -5,7 +5,7 @@
 <c:if test="${sessionScope.authorized_user.authLevel eq 2}">
     <a href="${initParam.hostURL}${pageContext.request.contextPath}/Protected/addCity.jsp">Add City</a><br>
 </c:if>
-<a href="${initParam.hostURL}${pageContext.request.contextPath}/listCountries.jsp">List Countries</a><br>
+<a href="${initParam.hostURL}${pageContext.request.contextPath}/Protected/listCountries.jsp">List Countries</a><br>
 <a href="${initParam.hostURL}${pageContext.request.contextPath}/invalidatesessionandremovecookies.do">Clear All User Data</a><br>
 <a href="${initParam.hostURL}${pageContext.request.contextPath}/signout.do">Sign out</a><br>
 <%--<a href="urlwithparameters.jsp?uid=aptech&pwd=123456789">URL with params</a>--%>

@@ -5,19 +5,19 @@
     <title>Title</title>
 </head>
 <body>
-    <c:import url="header.jsp" />
+    <c:import url="../header.jsp" />
     <c:choose>
-        <c:when test="${sessionScope.authorized_user == null}">
-            <c:redirect url="login.jsp?dest=listCountries" />
-        </c:when>
-        <c:when test="${sessionScope.authorized_user.authLevel < 1}">
-            <c:redirect url="login.jsp?dest=listCountries" />
-        </c:when>
-        <c:when test="${sessionScope.authorized_user.uid == null}">
-            <c:redirect url="login.jsp?dest=listCountries" />
-        </c:when>
+<%--        <c:when test="${sessionScope.authorized_user == null}">--%>
+<%--            <c:redirect url="../login.jsp?dest=listCountries" />--%>
+<%--        </c:when>--%>
+<%--        <c:when test="${sessionScope.authorized_user.authLevel < 1}">--%>
+<%--            <c:redirect url="../login.jsp?dest=listCountries" />--%>
+<%--        </c:when>--%>
+<%--        <c:when test="${sessionScope.authorized_user.uid == null}">--%>
+<%--            <c:redirect url="../login.jsp?dest=listCountries" />--%>
+<%--        </c:when>--%>
         <c:when test="${sessionScope.countryData == null}" >
-            <c:redirect url="getcountrydata.do" />
+            <c:redirect url="${initParam.hostURL}${pageContext.request.contextPath}/getcountrydata.do" />
         </c:when>
         <c:otherwise>
             <h1><c:out value="Welcome back ${sessionScope.authorized_user.uid}"/></h1>
@@ -26,7 +26,7 @@
     <table style="width: 100%">
         <tr>
             <td style="width:25%;height:80%;" valign="top">
-                <c:import url="navbar.jsp" />
+                <c:import url="../navbar.jsp" />
             </td>
             <td style="width:75%;height:80%;">
                 <table border="1">
@@ -63,7 +63,7 @@
         </tr>
     </table>
 
-    <c:import url="footer.jsp" >
+    <c:import url="../footer.jsp" >
         <c:param name="copyrightYear" value="${initParam.copyright}" />
         <c:param name="webLink" value="${initParam.weblink}" />
     </c:import>

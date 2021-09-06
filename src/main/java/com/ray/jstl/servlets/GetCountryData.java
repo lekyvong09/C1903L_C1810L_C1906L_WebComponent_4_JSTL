@@ -55,7 +55,8 @@ public class GetCountryData extends HttpServlet {
             {
                 throw new IOException("Query could not be executed to get all countries");
             }
-            response.sendRedirect("listCountries.jsp");
+            response.sendRedirect(getServletContext().getInitParameter("hostURL")
+                    + getServletContext().getContextPath() + "/Protected/listCountries.jsp");
         }
         else
         {
