@@ -22,7 +22,7 @@
                 <c:import url="../navbar.jsp" />
             </td>
             <td style="width:75%;height:80%;">
-                <form method="post" action="${initParam.hostURL}${pageContext.request.contextPath}/addnewcity.do">
+                <form method="post" action="${initParam.hostURL}${pageContext.request.contextPath}/citycontroller.do">
 
                     <table border="1">
                         <tr>
