@@ -65,6 +65,7 @@ public class CityController extends HttpServlet {
                 {
                     City c = new City();
 
+                    c.setId(rs.getInt("id"));
                     c.setName(rs.getString("NAME"));
                     c.setCountryCode(rs.getString("CountryCode"));
                     c.setCountry(rs.getString("Country"));

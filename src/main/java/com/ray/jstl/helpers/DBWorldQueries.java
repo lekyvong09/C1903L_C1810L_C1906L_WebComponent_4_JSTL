@@ -32,4 +32,13 @@ public class DBWorldQueries {
         return String.format("select * from webUser where uid='%s' and password='%s'", username, password);
     }
 
+    public static String updateCity(City c) {
+        // UPDATE city SET Name='...' , CountryCode='...', Country='...', Population=.... WHERE id = ....
+        return String.format("UPDATE city SET Name='%s' , CountryCode='%s', Country='%s', Population=%d WHERE id =%d"
+                , c.getName()
+                , c.getCountryCode()
+                , c.getCountry()
+                , c.getPopulation()
+                , c.getId());
+    }
 }
