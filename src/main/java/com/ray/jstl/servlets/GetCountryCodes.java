@@ -2,6 +2,7 @@ package com.ray.jstl.servlets;
 
 import com.ray.jstl.dbmodels.DBManager;
 import com.ray.jstl.helpers.DBWorldQueries;
+import com.ray.jstl.models.WebUser;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +21,19 @@ public class GetCountryCodes extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession s = request.getSession();
+
+        if (s.getAttribute("authorized_user") == null) {
+            response.sendRedirect(getServletContext().getInitParameter("hostURL")
+                    + getServletContext().getContextPath() + "/login.jsp");
+            return;
+        } else {
+            WebUser wu = (WebUser) s.getAttribute("authorized_user");
+            if (wu.getAuthLevel() < 2) {
+                response.sendRedirect(getServletContext().getInitParameter("hostURL")
+                        + getServletContext().getContextPath() + "/login.jsp");
+                return;
+            }
+        }
 
         if (getServletConfig().getServletContext().getAttribute("WorldDBManager") != null)
         {
