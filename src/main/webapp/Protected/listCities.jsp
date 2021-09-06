@@ -14,7 +14,7 @@
 
     <c:choose>
         <c:when test="${sessionScope.cityData == null}" >
-            <c:redirect url="${initParam.hostURL}${pageContext.request.contextPath}/getcitydata.do" />
+            <c:redirect url="${initParam.hostURL}${pageContext.request.contextPath}/citycontroller.do" />
         </c:when>
         <c:otherwise>
             <h1><c:out value="Welcome back ${sessionScope.authorized_user.uid}" /></h1>
