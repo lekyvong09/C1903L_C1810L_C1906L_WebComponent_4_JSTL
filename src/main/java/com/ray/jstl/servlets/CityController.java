@@ -26,8 +26,8 @@ public class CityController extends HttpServlet {
         }
 
         switch (theCommand) {
-            case "LIST":
-                getCityData(request, response);
+            case "DELETE":
+                deleteCity(request, response);
                 break;
             case "LOAD":
                 loadCity(request, response);
@@ -266,6 +266,50 @@ public class CityController extends HttpServlet {
                 HttpSession s = request.getSession();
                 s.setAttribute("cityData", null);
                 s.setAttribute("theCity", null);
+
+                response.sendRedirect(getServletContext().getInitParameter("hostURL") +
+                        getServletContext().getContextPath() + "/Protected/listCities.jsp");
+            }
+            else
+            {
+                response.sendRedirect(getServletContext().getInitParameter("hostURL")
+                        + getServletContext().getContextPath() + "login.jsp");
+            }
+        } catch (Exception ex)
+        {
+            response.sendRedirect(getServletContext().getInitParameter("hostURL")
+                    + getServletContext().getContextPath() + "/errorHandler.jsp");
+        }
+    }
+
+
+    private void deleteCity(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        try {
+            String cityId = request.getParameter("cityId");
+
+            if (getServletConfig().getServletContext().getAttribute("WorldDBManager") != null)
+            {
+                DBManager dbm = (DBManager)getServletConfig().getServletContext().getAttribute("WorldDBManager");
+
+                try {
+                    if (!dbm.isConnected())
+                    {
+                        if (!dbm.openConnection())
+                            throw new IOException("Could not connect to database and open connection");
+                    }
+
+                    String query = DBWorldQueries.deleteCity(cityId);
+
+                    dbm.ExecuteNonQuery(query);
+                }
+                catch (Exception ex)
+                {
+                    throw new IOException("Query could not be executed to insert a new city");
+                }
+
+                HttpSession s = request.getSession();
+                s.setAttribute("cityData", null);
 
                 response.sendRedirect(getServletContext().getInitParameter("hostURL") +
                         getServletContext().getContextPath() + "/Protected/listCities.jsp");

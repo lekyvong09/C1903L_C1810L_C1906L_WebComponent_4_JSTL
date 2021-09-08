@@ -41,13 +41,23 @@
                             <c:param name="command" value="LOAD" />
                             <c:param name="cityId" value="${tempCity.id}" />
                         </c:url>
+                        <c:url var="deleteLink" value="${initParam.hostURL}${pageContext.request.contextPath}/citycontroller.do">
+                            <c:param name="command" value="DELETE" />
+                            <c:param name="cityId" value="${tempCity.id}" />
+                        </c:url>
                         <tr>
                             <td>${tempCity.id}</td>
                             <td>${tempCity.name}</td>
                             <td>${tempCity.countryCode}</td>
                             <td>${tempCity.country}</td>
                             <td>${tempCity.population}</td>
-                            <td><a href="${updateLink}">Update</a></td>
+                            <td>
+                                <a href="${updateLink}">Update</a>
+                                 |
+                                <a href="${deleteLink}"
+                                   onclick="if(!confirm('Are you sure you want to delete this city?')) return false;"
+                                >Delete</a>
+                            </td>
                         </tr>
                     </c:forEach>
                 </table>

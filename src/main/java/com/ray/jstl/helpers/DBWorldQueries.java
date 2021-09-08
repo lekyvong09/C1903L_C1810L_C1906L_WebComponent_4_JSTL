@@ -45,4 +45,8 @@ public class DBWorldQueries {
     public static String loadCity(String cityId) {
         return "select * from city where id=" + cityId;
     }
+
+    public static String deleteCity(String cityId) {
+        return "delete from city where id=" + cityId;
+    }
 }
