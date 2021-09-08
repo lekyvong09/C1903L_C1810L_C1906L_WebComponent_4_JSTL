@@ -40,7 +40,21 @@ public class CityController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        addCity(request,response);
+        String theCommand = request.getParameter("command");
+
+        if (theCommand == null) {
+            theCommand = "LIST";
+        }
+
+        switch (theCommand) {
+            case "ADD":
+                addCity(request,response);
+                break;
+            case "UPDATE":
+                updateCity(request, response);
+                break;
+        }
+
     }
 
     private void getCityData(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -197,6 +211,74 @@ public class CityController extends HttpServlet {
         {
             response.sendRedirect(getServletContext().getInitParameter("hostURL")
                     + getServletContext().getContextPath() + "login.jsp");
+        }
+    }
+
+
+    private void updateCity(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String name = request.getParameter("cityName");
+        String countryCode = request.getParameter("cityCountryCode");
+        String countryName = request.getParameter("cityCountryName");
+        String population = request.getParameter("cityPopulation");
+
+        if (name == null || name.equals("")
+                || countryCode == null || countryCode.equals("")
+                || countryName == null || countryName.equals("")
+                || population == null || population.equals(""))
+        {
+            response.sendRedirect(getServletContext().getInitParameter("hostURL")
+                    + getServletContext().getContextPath() + "/citycontroller.do?command=LOAD&cityId="
+                    + request.getParameter("cityId"));
+            return;
+        }
+
+        try {
+            int id = Integer.parseInt(request.getParameter("cityId"));
+
+            City c = new City();
+
+            c.setId(id);
+            c.setName(name);
+            c.setCountryCode(countryCode);
+            c.setCountry(countryName);
+            c.setPopulation(Integer.parseInt(population));
+
+            if (getServletConfig().getServletContext().getAttribute("WorldDBManager") != null)
+            {
+                DBManager dbm = (DBManager)getServletConfig().getServletContext().getAttribute("WorldDBManager");
+
+                try {
+                    if (!dbm.isConnected())
+                    {
+                        if (!dbm.openConnection())
+                            throw new IOException("Could not connect to database and open connection");
+                    }
+
+                    String query = DBWorldQueries.updateCity(c);
+
+                    dbm.ExecuteNonQuery(query);
+                }
+                catch (Exception ex)
+                {
+                    throw new IOException("Query could not be executed to insert a new city");
+                }
+
+                HttpSession s = request.getSession();
+                s.setAttribute("cityData", null);
+                s.setAttribute("theCity", null);
+
+                response.sendRedirect(getServletContext().getInitParameter("hostURL") +
+                        getServletContext().getContextPath() + "/Protected/listCities.jsp");
+            }
+            else
+            {
+                response.sendRedirect(getServletContext().getInitParameter("hostURL")
+                        + getServletContext().getContextPath() + "login.jsp");
+            }
+        } catch (Exception ex)
+        {
+            response.sendRedirect(getServletContext().getInitParameter("hostURL")
+                    + getServletContext().getContextPath() + "/errorHandler.jsp");
         }
     }
 }

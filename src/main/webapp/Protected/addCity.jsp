@@ -23,7 +23,7 @@
             </td>
             <td style="width:75%;height:80%;">
                 <form method="post" action="${initParam.hostURL}${pageContext.request.contextPath}/citycontroller.do">
-
+                    <input type="hidden" name="command" value="ADD" />
                     <table border="1">
                         <tr>
                             <td>Name</td>

@@ -14,6 +14,8 @@
       </td>
       <td style="width:75%;height:80%;">
         <form method="post" action="${initParam.hostURL}${pageContext.request.contextPath}/citycontroller.do">
+          <input type="hidden" name="command" value="UPDATE" />
+          <input type="hidden" name="cityId" value="${theCity.id}" />
 
           <table border="1">
             <tr>
