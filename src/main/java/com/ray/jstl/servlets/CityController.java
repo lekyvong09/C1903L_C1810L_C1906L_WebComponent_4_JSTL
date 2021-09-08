@@ -29,7 +29,9 @@ public class CityController extends HttpServlet {
             case "LIST":
                 getCityData(request, response);
                 break;
-
+            case "LOAD":
+                loadCity(request, response);
+                break;
             default:
                 getCityData(request, response);
                 break;
@@ -149,6 +151,52 @@ public class CityController extends HttpServlet {
         {
             response.sendRedirect(getServletContext().getInitParameter("hostURL")
                     + getServletContext().getContextPath() + "/errorHandler.jsp");
+        }
+    }
+
+
+    private void loadCity(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession s = request.getSession();
+        String cityId = request.getParameter("cityId");
+
+        if (getServletConfig().getServletContext().getAttribute("WorldDBManager") != null)
+        {
+            DBManager dbm = (DBManager)getServletConfig().getServletContext().getAttribute("WorldDBManager");
+
+            try {
+                if (!dbm.isConnected())
+                {
+                    if (!dbm.openConnection())
+                        throw new IOException("Could not connect to database and open connection");
+                }
+
+                String query = DBWorldQueries.loadCity(cityId);
+
+                City theCity = new City();
+
+                ResultSet rs = dbm.ExecuteResultSet(query);
+
+                while (rs.next())
+                {
+                    theCity.setId(rs.getInt("id"));
+                    theCity.setName(rs.getString("NAME"));
+                    theCity.setCountryCode(rs.getString("CountryCode"));
+                    theCity.setCountry(rs.getString("Country"));
+                    theCity.setPopulation(rs.getInt("Population"));
+                }
+                s.setAttribute("theCity", theCity);
+            }
+            catch (Exception ex)
+            {
+                throw new IOException("Query could not be executed to get the city with given id");
+            }
+            response.sendRedirect(getServletContext().getInitParameter("hostURL")
+                    + getServletContext().getContextPath() +"/Protected/updateCity.jsp");
+        }
+        else
+        {
+            response.sendRedirect(getServletContext().getInitParameter("hostURL")
+                    + getServletContext().getContextPath() + "login.jsp");
         }
     }
 }

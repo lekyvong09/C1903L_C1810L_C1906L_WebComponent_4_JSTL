@@ -41,4 +41,8 @@ public class DBWorldQueries {
                 , c.getPopulation()
                 , c.getId());
     }
+
+    public static String loadCity(String cityId) {
+        return "select * from city where id=" + cityId;
+    }
 }

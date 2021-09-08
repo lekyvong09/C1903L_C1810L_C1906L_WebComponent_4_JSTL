@@ -34,15 +34,20 @@
                         <td>CountryCode</td>
                         <td>Country</td>
                         <td>Population</td>
+                        <td>Action</td>
                     </tr>
                     <c:forEach var="tempCity" items="${sessionScope.cityData}" varStatus="iterationCount">
-
+                        <c:url var="updateLink" value="${initParam.hostURL}${pageContext.request.contextPath}/citycontroller.do">
+                            <c:param name="command" value="LOAD" />
+                            <c:param name="cityId" value="${tempCity.id}" />
+                        </c:url>
                         <tr>
                             <td>${tempCity.id}</td>
                             <td>${tempCity.name}</td>
                             <td>${tempCity.countryCode}</td>
                             <td>${tempCity.country}</td>
                             <td>${tempCity.population}</td>
+                            <td><a href="${updateLink}">Update</a></td>
                         </tr>
                     </c:forEach>
                 </table>
