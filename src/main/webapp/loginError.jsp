@@ -3,26 +3,26 @@
 <html>
 <head>
     <title>Login Error</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 <body>
-  <body>
-  <c:import url="header.jsp" />
-
-  <table style="width: 100%">
-    <tr>
-      <td style="width:25%;height:80%;" valign="top">
+  <div class="container">
+    <div class="d-flex justify-content-center">
+      <c:import url="header.jsp" />
+    </div>
+    <div class="row">
+      <div class="col-4">
         <c:import url="navbar.jsp" />
-      </td>
-      <td style="width:75%;height:80%;">
+      </div>
+      <div class="col-8">
         <h1>Access Denied</h1>
-      </td>
-    </tr>
-  </table>
-
+      </div>
+    </div>
+  </div>
   <c:import url="footer.jsp" >
     <c:param name="copyrightYear" value="${initParam.copyright}" />
     <c:param name="webLink" value="${initParam.weblink}" />
   </c:import>
-  </body>
 </body>
 </html>
