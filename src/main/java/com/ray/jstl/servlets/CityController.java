@@ -237,6 +237,10 @@ public class CityController extends HttpServlet {
         }
 
         try {
+
+            HttpSession s = request.getSession();
+            City tempCity = (City) s.getAttribute("theCity");
+
             int id = Integer.parseInt(request.getParameter("cityId"));
 
             City c = new City();
@@ -246,6 +250,7 @@ public class CityController extends HttpServlet {
             c.setCountryCode(countryCode);
             c.setCountry(countryName);
             c.setPopulation(Integer.parseInt(population));
+            c.setImageUrl(tempCity.getImageUrl());
 
             if (getServletConfig().getServletContext().getAttribute("WorldDBManager") != null)
             {
@@ -267,7 +272,6 @@ public class CityController extends HttpServlet {
                     throw new IOException("Query could not be executed to insert a new city");
                 }
 
-                HttpSession s = request.getSession();
                 s.setAttribute("cityData", null);
                 s.setAttribute("theCity", null);
 

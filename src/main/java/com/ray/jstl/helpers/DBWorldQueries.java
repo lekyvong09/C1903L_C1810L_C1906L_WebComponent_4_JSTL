@@ -34,11 +34,12 @@ public class DBWorldQueries {
 
     public static String updateCity(City c) {
         // UPDATE city SET Name='...' , CountryCode='...', Country='...', Population=.... WHERE id = ....
-        return String.format("UPDATE city SET Name='%s' , CountryCode='%s', Country='%s', Population=%d WHERE id =%d"
+        return String.format("UPDATE city SET Name='%s' , CountryCode='%s', Country='%s', Population=%d, imageUrl='%s' WHERE id =%d"
                 , c.getName()
                 , c.getCountryCode()
                 , c.getCountry()
                 , c.getPopulation()
+                , c.getImageUrl()
                 , c.getId());
     }
 

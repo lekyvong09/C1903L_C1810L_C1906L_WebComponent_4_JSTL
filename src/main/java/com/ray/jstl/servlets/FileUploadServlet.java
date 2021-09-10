@@ -1,8 +1,11 @@
 package com.ray.jstl.servlets;
 
-import javax.servlet.*;
+import com.ray.jstl.models.City;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import javax.servlet.annotation.*;
 import java.io.IOException;
 
 @WebServlet(name = "FileUploadServlet", value = "/fileuploadservlet")
@@ -22,7 +25,14 @@ public class FileUploadServlet extends HttpServlet {
             part.write(getServletContext().getInitParameter("uploadPath") + fileName);
         }
 
-        //response.getWriter().print("The file uploaded successfully");
-        response.getWriter().print(getServletContext().getInitParameter("uploadPath") + fileName);
+        HttpSession s = request.getSession();
+        City tempCity = (City) s.getAttribute("theCity");
+        tempCity.setImageUrl(fileName);
+
+        s.setAttribute("theCity", tempCity);
+
+       // response.getWriter().print(getServletContext().getInitParameter("uploadPath") + fileName);
+        response.sendRedirect(getServletContext().getInitParameter("hostURL")
+                + getServletContext().getContextPath() + "/Protected/updateCity.jsp");
     }
 }

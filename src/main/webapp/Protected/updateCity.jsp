@@ -39,6 +39,13 @@
               <td><input type="number" name="cityPopulation" value="${theCity.population}" style="width: 100%;"></td>
             </tr>
             <tr>
+              <td>Image</td>
+              <td>
+                <a href="${initParam.hostURL}${pageContext.request.contextPath}/uploader.jsp">Change</a>
+                <img alt="NONE" src="${initParam.hostURL}${pageContext.request.contextPath}/FileDisplayServlet/${theCity.imageUrl}">
+              </td>
+            </tr>
+            <tr>
               <td colspan="2" align="right">
                 <input type="submit" name="updateCity" value="Update City" style="width: 100%;"/>
               </td>
