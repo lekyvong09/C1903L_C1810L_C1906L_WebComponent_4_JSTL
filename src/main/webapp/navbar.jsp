@@ -23,6 +23,9 @@
         <a class="nav-link" href="${initParam.hostURL}${pageContext.request.contextPath}/Protected/listCountries.jsp">List Countries</a><br>
     </li>
     <li class="nav-item">
+        <a class="nav-link" href="${initParam.hostURL}${pageContext.request.contextPath}/i18n-messages.jsp">Test i18n</a><br>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="${initParam.hostURL}${pageContext.request.contextPath}/invalidatesessionandremovecookies.do">Clear All User Data</a><br>
     </li>
     <li class="nav-item">

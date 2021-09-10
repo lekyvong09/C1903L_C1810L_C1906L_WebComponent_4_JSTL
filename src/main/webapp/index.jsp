@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="ex" uri="WEB-INF/WorldManagerTag.tld"%>
+<%@taglib prefix="ex" uri="WorldManagerTags"%>
 <!DOCTYPE html>
 <html>
 <head>
