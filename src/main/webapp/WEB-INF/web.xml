@@ -33,6 +33,10 @@
         <param-name>hostURL</param-name>
         <param-value>http://localhost:8080</param-value>
     </context-param>
+    <context-param>
+        <param-name>uploadPath</param-name>
+        <param-value>/Users/ray/Documents/Upload/</param-value>
+    </context-param>
 <!--    <error-page>-->
 <!--        <error-code>404</error-code>-->
 <!--        <location>/errorHandler.jsp</location>-->
