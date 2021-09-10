@@ -86,6 +86,8 @@ public class CityController extends HttpServlet {
                     c.setCountryCode(rs.getString("CountryCode"));
                     c.setCountry(rs.getString("Country"));
                     c.setPopulation(rs.getInt("Population"));
+                    c.setImageUrl((rs.getString("imageUrl") == null || rs.getString("imageUrl").equals("")) ?
+                            "default320x320.jpg" : rs.getString("imageUrl"));
                     System.out.println(c);
                     allCities.add(c);
                 }
@@ -197,6 +199,8 @@ public class CityController extends HttpServlet {
                     theCity.setCountryCode(rs.getString("CountryCode"));
                     theCity.setCountry(rs.getString("Country"));
                     theCity.setPopulation(rs.getInt("Population"));
+                    theCity.setImageUrl((rs.getString("imageUrl") == null || rs.getString("imageUrl").equals("")) ?
+                            "default320x320.jpg" : rs.getString("imageUrl"));
                 }
                 s.setAttribute("theCity", theCity);
             }

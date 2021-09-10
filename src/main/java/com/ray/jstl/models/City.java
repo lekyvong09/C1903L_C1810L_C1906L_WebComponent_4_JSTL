@@ -7,6 +7,7 @@ public class City {
     private String countryCode;
     private String country;
     private int population;
+    private String imageUrl;
 
     public City() { }
 
@@ -48,6 +49,14 @@ public class City {
 
     public void setPopulation(int population) {
         this.population = population;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Override

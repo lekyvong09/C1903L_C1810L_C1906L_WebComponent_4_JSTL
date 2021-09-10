@@ -38,6 +38,7 @@
                         <td>CountryCode</td>
                         <td>Country</td>
                         <td>Population</td>
+                        <td>Image</td>
                         <td>Action</td>
                     </tr>
                     <c:forEach var="tempCity" items="${sessionScope.cityData}" varStatus="iterationCount">
@@ -55,6 +56,8 @@
                             <td>${tempCity.countryCode}</td>
                             <td>${tempCity.country}</td>
                             <td>${tempCity.population}</td>
+<%--                            <td>${tempCity.imageUrl}</td>--%>
+                            <td><img src="${initParam.hostURL}${pageContext.request.contextPath}/FileDisplayServlet/${tempCity.imageUrl}"></td>
                             <td>
                                 <a href="${updateLink}">Update</a>
                                  |
