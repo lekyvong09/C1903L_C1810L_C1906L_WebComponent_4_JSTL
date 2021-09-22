@@ -25,10 +25,12 @@ public class UserController extends HttpServlet {
         String action = request.getPathInfo();
 
         switch (action) {
-            case "list":
-                listUser(request, response);
+            case "/new":
+                showNewForm(request, response);
                 break;
-
+            case "/edit":
+                showEditForm(request, response);
+                break;
             default:
                 listUser(request, response);
                 break;
@@ -50,4 +52,25 @@ public class UserController extends HttpServlet {
         response.sendRedirect(getServletContext().getInitParameter("hostURL")
                 + getServletContext().getContextPath() + "/user-list.jsp");
     }
+
+
+    private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession s = request.getSession();
+        s.setAttribute("theUser", null);
+        response.sendRedirect(getServletContext().getInitParameter("hostURL")
+                + getServletContext().getContextPath() + "/user-form.jsp");
+    }
+
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        int id = Integer.parseInt(request.getParameter("id"));
+        User existingUser = userDao.getUser(id);
+
+        HttpSession s = request.getSession();
+        s.setAttribute("theUser", existingUser);
+
+        response.sendRedirect(getServletContext().getInitParameter("hostURL")
+                + getServletContext().getContextPath() + "/user-form.jsp");
+    }
+
 }
