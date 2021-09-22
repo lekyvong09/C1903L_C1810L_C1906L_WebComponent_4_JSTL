@@ -14,37 +14,52 @@
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
+    <c:if test="${sessionScope.listUser == null}">
+        <c:redirect url="${initParam.hostURL}${pageContext.request.contextPath}/user/list" />
+    </c:if>
+    <div class="container mt-5">
         <div class="d-flex justify-content-center">
             <c:import url="header.jsp" />
         </div>
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-4">
                 <c:import url="navbar.jsp" />
             </div>
             <div class="col-8">
-
-                <table border="1">
-                    <tr>
-                        <td>id</td>
-                        <td>uid</td>
-                        <td>password</td>
-                        <td>authLevel</td>
-                        <td>email</td>
-                        <td>countryCode</td>
-                    </tr>
-                    <c:forEach items="${sessionScope.listUser}" var="user">
-                        <tr>
-                            <td>${user.id}</td>
-                            <td>${user.uid}</td>
-                            <td>${user.password}</td>
-                            <td>${user.authLevel}</td>
-                            <td>${user.email}</td>
-                            <td>${user.countryCode}</td>
-                        </tr>
-                    </c:forEach>
-                </table>
-
+                <a class="btn btn-primary"
+                   href="${initParam.hostURL}${pageContext.request.contextPath}/user/new"
+                   role="button">Add User</a>
+                <div class="container">
+                    <table class="table mt-2">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>id</th>
+                                <th>uid</th>
+                                <th>password</th>
+                                <th>authLevel</th>
+                                <th>email</th>
+                                <th>countryCode</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach items="${sessionScope.listUser}" var="user">
+                                <c:url var="updateLink" value="${initParam.hostURL}${pageContext.request.contextPath}/user/edit">
+                                    <c:param name="id" value="${user.id}" />
+                                </c:url>
+                                <tr>
+                                    <td>${user.id}</td>
+                                    <td>${user.uid}</td>
+                                    <td>${user.password}</td>
+                                    <td>${user.authLevel}</td>
+                                    <td>${user.email}</td>
+                                    <td>${user.countryCode}</td>
+                                    <td><a href="${updateLink}">Update</a></td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
