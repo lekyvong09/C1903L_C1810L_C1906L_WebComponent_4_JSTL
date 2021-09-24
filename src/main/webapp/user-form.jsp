@@ -25,6 +25,7 @@
                 <c:url var="actionLink" value="${initParam.hostURL}${pageContext.request.contextPath}/user/edit" />
             </c:if>
         </div>
+        <a class="my-5" href="${initParam.hostURL}${pageContext.request.contextPath}/user/list">Back to List User</a>
         <div class="row mt-5">
             <div class="col-4">
                 <c:import url="navbar.jsp" />
