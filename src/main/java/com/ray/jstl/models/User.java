@@ -35,6 +35,15 @@ public class User {
         this.countryCode = countryCode;
     }
 
+    public User(int id, String uid, String password, int authLevel, String email, String countryCode) {
+        this.id = id;
+        this.uid = uid;
+        this.password = password;
+        this.authLevel = authLevel;
+        this.email = email;
+        this.countryCode = countryCode;
+    }
+
     public int getId() {
         return id;
     }

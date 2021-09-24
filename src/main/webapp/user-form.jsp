@@ -18,59 +18,67 @@
         <div class="d-flex justify-content-center">
             <c:if test="${sessionScope.theUser == null}">
                 Add New User
-                <c:url var="actionLink" value="${initParam.hostURL}${pageContext.request.contextPath}/user/new" />
+                <c:url var="actionLink" value="${initParam.hostURL}${pageContext.request.contextPath}/user/insert" />
             </c:if>
             <c:if test="${sessionScope.theUser != null}">
                 Edit New User
-                <c:url var="actionLink" value="${initParam.hostURL}${pageContext.request.contextPath}/user/edit" />
+                <c:url var="actionLink" value="${initParam.hostURL}${pageContext.request.contextPath}/user/update" />
             </c:if>
         </div>
-        <a class="my-5" href="${initParam.hostURL}${pageContext.request.contextPath}/user/list">Back to List User</a>
         <div class="row mt-5">
             <div class="col-4">
                 <c:import url="navbar.jsp" />
             </div>
             <div class="col-8">
-                <form method="post" action="${actionLink}">
-                    <c:if test="${sessionScope.theUser != null}">
-                        <input type="hidden" name="id" value="<c:out value='${theUser.id}' />" />
-                    </c:if>
+                <a class="my-5" href="${initParam.hostURL}${pageContext.request.contextPath}/user/list">Back to List User</a>
+                <div class="container my-5">
+                    <form method="post" action="${actionLink}">
+                        <c:if test="${sessionScope.theUser != null}">
+                            <input type="hidden" name="id" value="<c:out value='${theUser.id}' />" />
+                        </c:if>
 
-                    <div class="form-group row">
-                        <label for="uid" class="col-2 col-form-label">Uid: </label>
-                        <div class="col-4">
-                            <input class="form-control" type="text" id="uid" name="uid" value="${theUser.uid}" />
+                        <div class="form-group row">
+                            <label for="uid" class="col-2 col-form-label">Uid: </label>
+                            <div class="col-4">
+                                <input class="form-control" type="text" id="uid" name="uid" value="${theUser.uid}" />
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group row">
-                        <label for="password" class="col-2 col-form-label">password: </label>
-                        <div class="col-4">
-                            <input class="form-control" type="password" id="password" name="password" value="${theUser.password}" />
+                        <div class="form-group row">
+                            <label for="password" class="col-2 col-form-label">password: </label>
+                            <div class="col-4">
+                                <input class="form-control" type="password" id="password" name="password" value="${theUser.password}" />
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group row">
-                        <label for="authLevel" class="col-2 col-form-label">authLevel: </label>
-                        <div class="col-4">
-                            <input class="form-control" type="text" id="authLevel" name="authLevel" value="${theUser.authLevel}" />
+                        <div class="form-group row">
+                            <label for="authLevel" class="col-2 col-form-label">authLevel: </label>
+                            <div class="col-4">
+                                <input class="form-control" type="text" id="authLevel" name="authLevel" value="${theUser.authLevel}" />
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group row">
-                        <label for="email" class="col-2 col-form-label">email: </label>
-                        <div class="col-4">
-                            <input class="form-control" type="text" id="email" name="email" value="${theUser.email}" />
+                        <div class="form-group row">
+                            <label for="email" class="col-2 col-form-label">email: </label>
+                            <div class="col-4">
+                                <input class="form-control" type="text" id="email" name="email" value="${theUser.email}" />
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group row">
-                        <div class="offset-2 col-10">
-                            <input class="btn btn-primary" type="submit" value="Submit">
+                        <div class="form-group row">
+                            <label for="countryCode" class="col-2 col-form-label">countryCode: </label>
+                            <div class="col-4">
+                                <input class="form-control" type="text" id="countryCode" name="countryCode" value="${theUser.countryCode}" />
+                            </div>
                         </div>
-                    </div>
-                </form>
 
+                        <div class="form-group row">
+                            <div class="offset-2 col-10">
+                                <input class="btn btn-primary" type="submit" value="Submit">
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

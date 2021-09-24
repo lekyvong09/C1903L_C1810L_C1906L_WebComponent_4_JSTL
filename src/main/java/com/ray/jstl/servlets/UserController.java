@@ -31,6 +31,12 @@ public class UserController extends HttpServlet {
             case "/edit":
                 showEditForm(request, response);
                 break;
+            case "/insert":
+                insertUser(request, response);
+                break;
+            case "/update":
+                updateUser(request, response);
+                break;
             default:
                 listUser(request, response);
                 break;
@@ -71,6 +77,45 @@ public class UserController extends HttpServlet {
 
         response.sendRedirect(getServletContext().getInitParameter("hostURL")
                 + getServletContext().getContextPath() + "/user-form.jsp");
+    }
+
+
+    private void insertUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        String uid = request.getParameter("uid");
+        String password = request.getParameter("password");
+        int authLevel = Integer.parseInt(request.getParameter("authLevel"));
+        String email = request.getParameter("email");
+        String countryCode = request.getParameter("countryCode");
+
+        User newUser = new User(uid,password,authLevel,email,countryCode);
+        userDao.insertUser(newUser);
+
+        HttpSession s = request.getSession();
+        s.setAttribute("listUser", null);
+
+        response.sendRedirect(getServletContext().getInitParameter("hostURL")
+                + getServletContext().getContextPath() + "/user/list");
+    }
+
+
+    private void updateUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        int id = Integer.parseInt(request.getParameter("id"));
+        String uid = request.getParameter("uid");
+        String password = request.getParameter("password");
+        int authLevel = Integer.parseInt(request.getParameter("authLevel"));
+        String email = request.getParameter("email");
+        String countryCode = request.getParameter("countryCode");
+
+        User updateUser = new User(id,uid,password,authLevel,email,countryCode);
+        userDao.updateUser(updateUser);
+
+        HttpSession s = request.getSession();
+        s.setAttribute("listUser", null);
+
+        response.sendRedirect(getServletContext().getInitParameter("hostURL")
+                + getServletContext().getContextPath() + "/user/list");
     }
 
 }
