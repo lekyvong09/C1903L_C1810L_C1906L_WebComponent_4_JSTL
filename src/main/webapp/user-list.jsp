@@ -47,6 +47,9 @@
                                 <c:url var="updateLink" value="${initParam.hostURL}${pageContext.request.contextPath}/user/edit">
                                     <c:param name="id" value="${user.id}" />
                                 </c:url>
+                                <c:url var="deleteLink" value="${initParam.hostURL}${pageContext.request.contextPath}/user/delete">
+                                    <c:param name="id" value="${user.id}" />
+                                </c:url>
                                 <tr>
                                     <td>${user.id}</td>
                                     <td>${user.uid}</td>
@@ -54,7 +57,12 @@
                                     <td>${user.authLevel}</td>
                                     <td>${user.email}</td>
                                     <td>${user.countryCode}</td>
-                                    <td><a href="${updateLink}">Update</a></td>
+                                    <td>
+                                        <a href="${updateLink}">Update</a>
+                                         |
+                                        <a href="${deleteLink}"
+                                            onclick="if (!confirm('Please confirm to delete!')) return false;">Delete</a>
+                                    </td>
                                 </tr>
                             </c:forEach>
                         </tbody>

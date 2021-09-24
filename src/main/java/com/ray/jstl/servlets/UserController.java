@@ -37,6 +37,9 @@ public class UserController extends HttpServlet {
             case "/update":
                 updateUser(request, response);
                 break;
+            case "/delete":
+                deleteUser(request, response);
+                break;
             default:
                 listUser(request, response);
                 break;
@@ -118,4 +121,15 @@ public class UserController extends HttpServlet {
                 + getServletContext().getContextPath() + "/user/list");
     }
 
+
+    private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        userDao.deleteUser(id);
+
+        HttpSession s = request.getSession();
+        s.setAttribute("listUser", null);
+
+        response.sendRedirect(getServletContext().getInitParameter("hostURL")
+                + getServletContext().getContextPath() + "/user/list");
+    }
 }
