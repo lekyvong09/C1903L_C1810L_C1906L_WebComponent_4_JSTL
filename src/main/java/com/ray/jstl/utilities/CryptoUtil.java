@@ -4,11 +4,11 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class CryptoUtil {
-    private static String SALT = "123456";
+    //private static String SALT = "123456";
 
     final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
 
-    public static String hashPassword(String inputString) {
+    public static String hashPassword(String inputString, String SALT) {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
             messageDigest.update(SALT.getBytes()); // prepend SALT

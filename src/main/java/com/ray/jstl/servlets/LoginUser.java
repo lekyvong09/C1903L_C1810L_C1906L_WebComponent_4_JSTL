@@ -44,8 +44,10 @@ public class LoginUser extends HttpServlet {
                         }
 
                         //String query = DBWorldQueries.getWebUserByUsernameAndPassword(uid, pwd);
-                        System.out.println(CryptoUtil.hashPassword(pwd));
-                        String query = DBWorldQueries.getWebUserByUsernameAndPassword(uid, CryptoUtil.hashPassword(pwd));
+                        System.out.println(CryptoUtil.hashPassword(pwd,
+                                getServletContext().getInitParameter("salt")));
+                        String query = DBWorldQueries.getWebUserByUsernameAndPassword(uid,
+                                CryptoUtil.hashPassword(pwd, getServletContext().getInitParameter("salt")));
                         ResultSet rs = dbm.ExecuteResultSet(query);
 
                         while (rs.next())

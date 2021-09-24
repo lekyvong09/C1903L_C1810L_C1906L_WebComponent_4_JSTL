@@ -37,6 +37,10 @@
         <param-name>uploadPath</param-name>
         <param-value>/Users/ray/Documents/Upload/</param-value>
     </context-param>
+    <context-param>
+        <param-name>salt</param-name>
+        <param-value>[db]Hq38cn%eOd9A7za$C6uEp-GGT1A/d%z/Y;G)GRw4W=vcBG{VYl]N3XDzEer_wbZE3%KB-QqfLggtaJ||Jv0[iUsj]OV</param-value>
+    </context-param>
 <!--    <error-page>-->
 <!--        <error-code>404</error-code>-->
 <!--        <location>/errorHandler.jsp</location>-->
