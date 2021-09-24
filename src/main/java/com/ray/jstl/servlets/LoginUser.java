@@ -3,6 +3,7 @@ package com.ray.jstl.servlets;
 import com.ray.jstl.dbmodels.DBManager;
 import com.ray.jstl.helpers.DBWorldQueries;
 import com.ray.jstl.models.WebUser;
+import com.ray.jstl.utilities.CryptoUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,7 +43,9 @@ public class LoginUser extends HttpServlet {
                                 throw new IOException("Could not connect to database and open connection");
                         }
 
-                        String query = DBWorldQueries.getWebUserByUsernameAndPassword(uid, pwd);
+                        //String query = DBWorldQueries.getWebUserByUsernameAndPassword(uid, pwd);
+                        System.out.println(CryptoUtil.hashPassword(pwd));
+                        String query = DBWorldQueries.getWebUserByUsernameAndPassword(uid, CryptoUtil.hashPassword(pwd));
                         ResultSet rs = dbm.ExecuteResultSet(query);
 
                         while (rs.next())
