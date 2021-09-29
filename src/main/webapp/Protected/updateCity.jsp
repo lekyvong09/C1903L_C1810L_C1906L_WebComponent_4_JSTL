@@ -17,7 +17,7 @@
         <c:import url="../navbar.jsp" />
       </div>
       <div class="col-8">
-        <form method="post" action="${initParam.hostURL}${pageContext.request.contextPath}/citycontroller.do">
+        <form method="post" action="${initParam.hostURL}${pageContext.request.contextPath}/Protected/citycontroller.do">
           <input type="hidden" name="command" value="UPDATE" />
           <input type="hidden" name="cityId" value="${theCity.id}" />
 
