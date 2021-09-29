@@ -1,12 +1,26 @@
 package com.ray.jstl.models;
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+
 public class City {
 
     private int id;
+
+    @Length(min=3, max=100)
     private String name;
+
+    @NotEmpty
     private String countryCode;
+
+    @NotEmpty
     private String country;
+
+    @Min(1)
     private int population;
+
     private String imageUrl;
 
     public City() { }

@@ -85,6 +85,12 @@
             <artifactId>hibernate-core</artifactId>
             <version>5.5.6.Final</version>
         </dependency>
+        <!-- Hibernate Validator version 7 is for JakartaEE 9 -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.2.0.Final</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -10,9 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Set;
 
 @WebServlet(name = "CityController", value = "/citycontroller.do")
 public class CityController extends HttpServlet {
@@ -109,28 +114,61 @@ public class CityController extends HttpServlet {
         }
     }
 
+    private Integer parseIntOrNull(String value) {
+        if (value == null || value.equals(""))
+            return null;
+            try {
+                return Integer.parseInt(value);
+            } catch ( NumberFormatException e) {
+                e.printStackTrace();
+                return null;
+            }
+    }
 
     private void addCity(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession s = request.getSession();
+        StringBuilder errors = new StringBuilder("");
         String name = request.getParameter("cityName");
         String countryCode = request.getParameter("cityCountryCode");
         String countryName = request.getParameter("cityCountryName");
         String population = request.getParameter("cityPopulation");
 
-        if (name == null || name.equals("")
-                || countryCode == null || countryCode.equals("")
-                || countryName == null || countryName.equals("")
-                || population == null || population.equals(""))
-        {
+//        if (name == null || name.equals("")
+//                || countryCode == null || countryCode.equals("")
+//                || countryName == null || countryName.equals("")
+//                || population == null || population.equals(""))
+//        {
+//            response.sendRedirect(getServletContext().getInitParameter("hostURL")
+//                    + getServletContext().getContextPath() + "/Protected/addCity.jsp");
+//        }
+
+        City c = new City();
+        c.setName(name);
+        c.setCountryCode(countryCode);
+        c.setCountry(countryName);
+        c.setPopulation(parseIntOrNull(population) != null ? parseIntOrNull(population) : 0);
+
+        ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
+        Validator validator = validatorFactory.getValidator();
+        Set<ConstraintViolation<City>> constraintViolations = validator.validate(c);
+
+        if (!constraintViolations.isEmpty()) {
+            errors.append("<ul>");
+            for (ConstraintViolation<City> constraintViolation : constraintViolations) {
+                errors.append("<li>" + constraintViolation.getPropertyPath() + " "
+                        + constraintViolation.getMessage() + "</li>");
+            }
+            errors.append("</ul>");
+            System.out.println(errors);
+            s.setAttribute("validationError", errors);
             response.sendRedirect(getServletContext().getInitParameter("hostURL")
                     + getServletContext().getContextPath() + "/Protected/addCity.jsp");
+            return;
+        } else {
+            s.setAttribute("validationError", null);
         }
 
         try {
-            City c = new City();
-            c.setName(name);
-            c.setCountryCode(countryCode);
-            c.setCountry(countryName);
-            c.setPopulation(Integer.parseInt(population));
 
             if (getServletConfig().getServletContext().getAttribute("WorldDBManager") != null)
             {
@@ -152,7 +190,6 @@ public class CityController extends HttpServlet {
                     throw new IOException("Query could not be executed to insert a new city");
                 }
 
-                HttpSession s = request.getSession();
                 s.setAttribute("cityData", null);
 
                 response.sendRedirect(getServletContext().getInitParameter("hostURL") +

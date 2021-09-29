@@ -26,6 +26,7 @@
                 <c:import url="../navbar.jsp" />
             </div>
             <div class="col-8">
+                ${sessionScope.validationError}
                 <form method="post" action="${initParam.hostURL}${pageContext.request.contextPath}/citycontroller.do">
                     <input type="hidden" name="command" value="ADD" />
                     <table border="1">
