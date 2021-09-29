@@ -8,6 +8,10 @@ public class DBWorldQueries {
         return "select * from city order by population DESC";
     }
 
+    public static String getCity(int start, int pageSize) {
+        return String.format("select * from city order by population DESC limit %d, %d", start - 1, pageSize);
+    }
+
     public static String getCountry() {
         return "select code, name, population, density from country order by code";
     }
@@ -49,5 +53,9 @@ public class DBWorldQueries {
 
     public static String deleteCity(String cityId) {
         return "delete from city where id=" + cityId;
+    }
+
+    public static String getTotalCityNumber() {
+        return "select count(c.id) as count from city c";
     }
 }

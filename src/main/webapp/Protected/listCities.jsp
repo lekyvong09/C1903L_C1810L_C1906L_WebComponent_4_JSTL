@@ -42,11 +42,11 @@
                         <td>Action</td>
                     </tr>
                     <c:forEach var="tempCity" items="${sessionScope.cityData}" varStatus="iterationCount">
-                        <c:url var="updateLink" value="${initParam.hostURL}${pageContext.request.contextPath}/citycontroller.do">
+                        <c:url var="updateLink" value="${initParam.hostURL}${pageContext.request.contextPath}/Protected/citycontroller.do">
                             <c:param name="command" value="LOAD" />
                             <c:param name="cityId" value="${tempCity.id}" />
                         </c:url>
-                        <c:url var="deleteLink" value="${initParam.hostURL}${pageContext.request.contextPath}/citycontroller.do">
+                        <c:url var="deleteLink" value="${initParam.hostURL}${pageContext.request.contextPath}/Protected/citycontroller.do">
                             <c:param name="command" value="DELETE" />
                             <c:param name="cityId" value="${tempCity.id}" />
                         </c:url>
@@ -68,6 +68,12 @@
                         </tr>
                     </c:forEach>
                 </table>
+                Page
+                <c:forEach var="i" begin="1" end="${totalPage}">
+                    <a href="${initParam.hostURL}${pageContext.request.contextPath}/Protected/citycontroller.do?pageNumber=${i}">
+                        <c:out value="${i}" />
+                    </a>
+                </c:forEach>
             </div>
         </div>
     </div>

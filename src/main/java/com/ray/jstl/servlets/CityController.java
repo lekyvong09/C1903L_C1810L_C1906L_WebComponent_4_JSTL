@@ -22,6 +22,9 @@ import java.util.Set;
 
 @WebServlet(name = "CityController", value = "/Protected/citycontroller.do")
 public class CityController extends HttpServlet {
+    private float pageSize = 5;
+    private  int totalCityNumber;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -64,7 +67,14 @@ public class CityController extends HttpServlet {
     }
 
     private void getCityData(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        getTotalCityNumber(request, response);
         HttpSession s = request.getSession();
+        int pageNumber = parseIntOrNull(request.getParameter("pageNumber")) == null ?
+                        1 : parseIntOrNull(request.getParameter("pageNumber"));
+
+        int totalPage = (int)(Math.ceil(totalCityNumber / pageSize));
+
+        s.setAttribute("totalPage", totalPage);
 
         if (getServletConfig().getServletContext().getAttribute("WorldDBManager") != null)
         {
@@ -77,7 +87,7 @@ public class CityController extends HttpServlet {
                         throw new IOException("Could not connect to database and open connection");
                 }
 
-                String query = DBWorldQueries.getCity();
+                String query = DBWorldQueries.getCity((pageNumber - 1) * (int)pageSize + 1, (int)pageSize);
 
                 ArrayList<City> allCities = new ArrayList<City>();
 
@@ -112,6 +122,37 @@ public class CityController extends HttpServlet {
         {
             response.sendRedirect(getServletContext().getInitParameter("hostURL")
                     + getServletContext().getContextPath() + "login.jsp");
+        }
+    }
+
+    private void getTotalCityNumber(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        if (getServletConfig().getServletContext().getAttribute("WorldDBManager") != null)
+        {
+            DBManager dbm = (DBManager)getServletConfig().getServletContext().getAttribute("WorldDBManager");
+
+            try {
+                if (!dbm.isConnected())
+                {
+                    if (!dbm.openConnection())
+                        throw new IOException("Could not connect to database and open connection");
+                }
+
+                String query = DBWorldQueries.getTotalCityNumber();
+                ResultSet rs = dbm.ExecuteResultSet(query);
+
+                while (rs.next())
+                {
+                    totalCityNumber = rs.getInt("count");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new IOException("Query could not be executed to get all cities");
+            }
+        }
+        else
+        {
+            totalCityNumber = 0;
         }
     }
 
